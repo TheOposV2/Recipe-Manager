@@ -1,0 +1,36 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Spaghetti Carbonara",
+      "description": "Klasyczne włoskie danie.",
+      "ingredients": ["Pasta", "Eggs", "Pork", "Cheese", "Pepper"],
+      "preparationTime": 30,
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "title": "Pancakes",
+      "description": "Puszyste naleśniki z syropem klonowym.",
+      "ingredients": ["Flour", "Milk", "Eggs", "Honey"],
+      "preparationTime": 20,
+      "difficulty": "medium"
+    },
+    {
+      "id": 3,
+      "title": "Tacos",
+      "description": "Meksykańskie tacos z wołowiną i salsą.",
+      "ingredients": ["Flour", "Milk", "Eggs", "Beef", "Salt"],
+      "preparationTime": 60,
+      "difficulty": "hard"
+    },
+    {
+      "id": "3",
+      "title": "Tacos",
+      "description": "Meksykańskie tacos z wołowiną i salsą.",
+      "ingredients": ["Flour", "Milk", "Eggs", "Beef", "Salt"],
+      "preparationTime": 60,
+      "difficulty": "hard"
+    }
+  ]
+}

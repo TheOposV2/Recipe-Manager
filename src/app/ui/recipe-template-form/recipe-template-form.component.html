@@ -1,0 +1,65 @@
+
+@if (showForm) {
+<div>
+  <h2>{{ isEditMode ? 'Edytuj przepis' : 'Dodaj nowy przepis' }}</h2>
+
+  <form #recipeForm="ngForm" (ngSubmit)="onSubmit(recipeForm)" novalidate>
+    <div>
+      <label for="title">Tytuł przepisu:</label>
+     
+      <input type="text" name="title" ngModel required minlength="3" #title="ngModel" />
+      @if (title.invalid && title.touched) {
+      <div>
+        @if (title.errors?.['required']) {
+        <small>Tytuł jest wymagany</small>
+        }
+        @if (title.errors?.['minlength']) {
+        <small>Tytuł musi mieć co najmniej 3 znaki</small>
+        }
+      </div>
+      }
+    </div>
+
+    <div>
+      <label for="description">Opis przepisu:</label>
+      <textarea name="description" ngModel></textarea>
+    </div>
+
+    <div>
+      <label for="ingredients">Składniki (minimum 2):</label>
+      <input type="text" name="ingredients" ngModel required #ingredients="ngModel" />
+      @if (ingredients.invalid && ingredients.touched) { @if (ingredients.errors?.['required']) {
+      <small>Składniki są wymagane</small>
+      } }
+    </div>
+
+<div>
+  <label for="difficulty">Poziom trudności:</label>
+  <select name="difficulty" ngModel required #difficulty="ngModel">
+    <option value="" disabled selected>Wybierz trudność</option>
+    <option value="easy">Łatwy</option>
+    <option value="medium">Średni</option>
+    <option value="hard">Trudny</option>
+  </select>
+
+  @if (difficulty.invalid && difficulty.touched) {
+    <div>
+      @if (difficulty.errors?.['required']) {
+        <small>Poziom trudności jest wymagany</small>
+      }
+    </div>
+  }
+</div>
+
+    <div>
+      <label for="preparationTime"></label>
+      <input type="text" name="preparationTime" ngModel required #preparationTime="ngModel" />
+      @if (preparationTime.invalid && preparationTime.touched) { @if (preparationTime.errors?.['required']) {
+      <small>Czas jest wymagane</small>
+      } }
+    </div>
+
+    <button type="submit" [disabled]="recipeForm.invalid">{{ isEditMode ? 'Zapisz zmiany' : 'Dodaj przepis' }}</button>
+  </form>
+</div>
+}

@@ -1,0 +1,13 @@
+<article 
+  [ngClass]="recipe.title === selectedTitle ? 'selected' : ''"
+  >
+  <!-- 
+[ngClass]="recipe.title === selectedTitle ? 'selected' : ''" - logika podmiany stylu
+(click)="onRecipeClick()" - output 
+-->
+  <h3>{{ recipe.title }}</h3>
+  <p>{{ recipe.description }}</p>
+  <p>Poziom trudności: {{ recipe.difficulty }}</p>
+  <p>Czas przygotowania: {{ recipe.preparationTime }} minut</p> 
+</article>
+<button (click)="onDeleteRecipe(recipe.id)">Usuń</button>

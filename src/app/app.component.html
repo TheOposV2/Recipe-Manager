@@ -1,0 +1,17 @@
+<section class="container">
+  <nav>
+    <span><strong>Recipe Manager</strong></span>
+    <ul>
+      <li><a routerLink="/recipes">Lista Przepisów</a></li>
+      <li><a routerLink="/recipe/add">Dodaj Nowy Przepis</a></li>
+    </ul>
+  </nav>
+  <main>
+    @if (!isLoading) {
+<router-outlet></router-outlet>
+} @if (isLoading) {
+<mat-spinner></mat-spinner>
+}
+  </main>
+  <footer>&reg;Angular - poziom podstawowy</footer>
+</section>

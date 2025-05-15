@@ -1,0 +1,63 @@
+<div>
+  <h2>{{ isEditMode ? 'Edytuj przepis' : 'Dodaj nowy przepis' }}</h2>
+
+  <form [formGroup]="recipeFormGroup" (ngSubmit)="onSubmit()" class="reactive-form" novalidate>
+    <div>
+      <mat-form-field class="form-control-full-width">
+        <mat-label>Tytuł przepisu</mat-label>
+        <input matInput type="text" formControlName="title" />
+        @if (recipeFormGroup.get('title')?.hasError('required')){
+        <mat-error> Tytuł jest wymagany </mat-error>
+        } @if (recipeFormGroup.get('title')?.hasError('minlength')) {
+        <mat-error> Tytuł musi mieć co najmniej 3 znaki </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="form-control-full-width">
+        <mat-label>Opis: </mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" type="text" formControlName="description"></textarea>
+        @if (recipeFormGroup.get('description')?.errors?.['required']) {
+        <mat-error>Składniki są wymagane </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+ <div>
+<mat-form-field class="form-control-full-width">
+  <mat-label>Składniki (minimum 2):</mat-label>
+  <mat-select formControlName="ingredients" multiple>
+    @for (ingredient of popularIngredients; track ingredient) {
+      <mat-option [value]="ingredient">{{ingredient}}</mat-option>
+    }
+  </mat-select>
+  @if (recipeFormGroup.get('ingredients')?.touched && recipeFormGroup.get('ingredients')?.errors?.['required']) {
+    <mat-error>Składniki są wymagane</mat-error>
+  }
+</mat-form-field>
+</div>
+    <div>
+      <mat-form-field class="form-control-full-width">
+        <mat-label>Poziom trudności wykonania :</mat-label>
+        <select matNativeControl required formControlName="difficulty">
+          <option value="hard">hard</option>
+          <option value="medium">medium</option>
+          <option value="easy">easy</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="form-control-full-width">
+        <mat-label>Czas wykonania (w minutach):</mat-label>
+        <input matInput type="text" formControlName="preparationTime" />
+        @if (recipeFormGroup.get('preparationTime')?.errors?.['required']) {
+        <mat-error> Czas wykonania jest wymagany </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="recipeFormGroup.invalid">{{ isEditMode ? 'Zapisz zmiany' : 'Dodaj przepis' }}</button>
+  </form>
+</div>
