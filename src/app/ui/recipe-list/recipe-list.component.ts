@@ -7,7 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Route, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { tap } from 'rxjs';
 @Component({
   selector: 'app-recipe-list',
@@ -27,7 +27,9 @@ export class RecipeListComponent implements OnInit {
   currentRecipeTitle?: string;
   selectedRecipe: RecipeModel | null = null; 
     // Injecting recipeService in to scope of this class
-  constructor(private recipeService: RecipeService) {}
+  constructor(
+    private router: Router,
+    private recipeService: RecipeService) {}
     // Function that will get all recepes from db and store it in object array
   private getRecipes(): void {
     this.recipeService
@@ -52,11 +54,16 @@ onRecipeSelected(recipe: RecipeModel) {
   this.selectedRecipe = recipe;
   this.recipeSelected.emit(recipe); // Emit is a call to pass virable from child to parent using output connection 
 }
-    // Deletes the selected recipe and refreshes the recipe list
+  // Deletes the selected recipe and refreshes the list only after the delete request is complete
 onDeleteRecipe(id: number): void {
   this.recipeService.deleteRecipe(id).subscribe(() => {  
+  // Emit null to indicate no recipe is currently selected
   this.recipeSelected.emit(null);
-  this.recipeService.getRecipes()
+  // Refresh the list after the deletion is successfully completed
+  this.getRecipes();
   });
+  // DO NOT call this.getRecipes() outside the subscribe block!
+  // It would execute immediately, before the recipe is actually deleted from the backend,
+  // causing the list to refresh with the deleted item still present.
 }
 }

@@ -70,13 +70,26 @@ export class RecipeReactiveFormComponent implements OnInit {
   // Dunction that operates on submit event
 onSubmit(): void {
     if (this.recipeFormGroup.valid) { // If the form is valid, prepare the RecipeModel from form data
-      const recipe: RecipeModel = this.recipeFormGroup.value; // Determine if we're editing an existing recipe or creating a new one
-      if (this.isEditMode) { // After saving, navigate back to the recipe list
-        this.recipeService.editRecipe(recipe); 
+      console.log(this.recipeFormGroup.value);
+      const recipe: RecipeModel = this.recipeFormGroup.value;
+
+      const idParam = this.route.snapshot.paramMap.get("id");
+      const id = idParam ? Number(idParam) : null; // Ternary operator allowing to change that string or null to number of null 
+
+       // Determine if we're editing an existing recipe or creating a new one
+      if (id !== null) { // After saving, navigate back to the recipe list
+        recipe.id = id;
+        console.log("edit")
+        this.recipeService.editRecipe(recipe).subscribe(() => {  //need to remember about subscribe 
+        this.router.navigate(["/recipes"]);
+        }); 
       } else {
-        this.recipeService.addRecipe(recipe);
+        console.log("add")
+        this.recipeService.addRecipe(recipe).subscribe(() => {
+        this.router.navigate(["/recipes"]);
+        }); ;
       }
-      this.router.navigate(["/recipes"]); // We come back to veiw of all recepes
+       // We come back to veiw of all recepes
     }
   }
 }

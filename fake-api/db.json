@@ -1,36 +1,71 @@
 {
   "recipes": [
     {
-      "id": 1,
-      "title": "Spaghetti Carbonara",
-      "description": "Klasyczne włoskie danie.",
-      "ingredients": ["Pasta", "Eggs", "Pork", "Cheese", "Pepper"],
-      "preparationTime": 30,
-      "difficulty": "easy"
-    },
-    {
-      "id": 2,
+      "id": "2",
       "title": "Pancakes",
       "description": "Puszyste naleśniki z syropem klonowym.",
-      "ingredients": ["Flour", "Milk", "Eggs", "Honey"],
+      "ingredients": [
+        "Flour",
+        "Milk",
+        "Eggs",
+        "Honey"
+      ],
       "preparationTime": 20,
       "difficulty": "medium"
     },
     {
-      "id": 3,
-      "title": "Tacos",
-      "description": "Meksykańskie tacos z wołowiną i salsą.",
-      "ingredients": ["Flour", "Milk", "Eggs", "Beef", "Salt"],
-      "preparationTime": 60,
-      "difficulty": "hard"
+      "title": "asdasd",
+      "description": "sadasd",
+      "ingredients": [
+        "Garlic",
+        "Potatoes",
+        "Carrots",
+        "Olive oil"
+      ],
+      "difficulty": "hard",
+      "preparationTime": "600",
+      "id": "3"
     },
     {
       "id": "3",
       "title": "Tacos",
       "description": "Meksykańskie tacos z wołowiną i salsą.",
-      "ingredients": ["Flour", "Milk", "Eggs", "Beef", "Salt"],
+      "ingredients": [
+        "Flour",
+        "Milk",
+        "Eggs",
+        "Beef",
+        "Salt"
+      ],
       "preparationTime": 60,
       "difficulty": "hard"
+    },
+    {
+      "id": "9453",
+      "title": "asdasd",
+      "description": "asdasdasda",
+      "ingredients": [
+        "Tomatoes",
+        "Onions",
+        "Garlic",
+        "Carrots",
+        "Olive oil"
+      ],
+      "difficulty": "medium",
+      "preparationTime": "600"
+    },
+    {
+      "id": "7d0c",
+      "title": "asdasd",
+      "description": "asdasd",
+      "ingredients": [
+        "Onions",
+        "Garlic",
+        "Potatoes",
+        "Carrots"
+      ],
+      "difficulty": "hard",
+      "preparationTime": "6000"
     }
   ]
 }

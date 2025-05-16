@@ -35,6 +35,7 @@ constructor(private httpClient: HttpClient) { }
     // Update an existing recipe
   editRecipe(updatedRecipe: RecipeModel): Observable<RecipeModel> {
     // Sending put reqest and swiching data of specifec id
+    console.log(updatedRecipe.id);
     return this.httpClient.put<RecipeModel>(`${this.baseUrl}/recipes/${updatedRecipe.id}`, updatedRecipe);
   }
     // Fetch popular ingredients
