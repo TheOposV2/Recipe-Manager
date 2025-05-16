@@ -6,11 +6,20 @@ import { RecipeService } from '../../core/recipe/services/recipe.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { tap } from 'rxjs';
+import { PreparationTimePipe } from '../../core/recipe/pipes/preparation-time.pipe';
+import { DifficultyPipe } from '../../core/recipe/pipes/difficulty.pipe';
 
 @Component({
   selector: 'app-recipe-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatCardModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    RouterLink, 
+    MatCardModule, 
+    MatButtonModule, 
+    PreparationTimePipe, 
+    DifficultyPipe 
+],
   templateUrl: './recipe-detail.component.html',
   styleUrl: './recipe-detail.component.scss'
 })
