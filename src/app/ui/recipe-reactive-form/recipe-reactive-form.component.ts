@@ -8,6 +8,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-reactive-form',
@@ -83,11 +84,19 @@ onSubmit(): void {
         this.recipeService.editRecipe(recipe).subscribe(() => {  //need to remember about subscribe 
         this.router.navigate(["/recipes"]);
         }); 
-      } else {
-        console.log("add")
-        this.recipeService.addRecipe(recipe).subscribe(() => {
-        this.router.navigate(["/recipes"]);
-        }); ;
+      }
+      // adding gives id + 1 like string id = 4 and i get 41 not 5 as id 
+      // it is not needed for this app so it is left alone
+      else {
+        this.recipeService.getLastRecipeId().pipe(
+        switchMap(id=> {
+        recipe.id = id + 1;
+        console.log(recipe.id);
+        return this.recipeService.addRecipe(recipe);
+        })
+        ).subscribe(() => {
+        this.router.navigate(['/recipes']);
+        });
       }
        // We come back to veiw of all recepes
     }

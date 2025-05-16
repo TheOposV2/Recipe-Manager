@@ -2,9 +2,9 @@ export interface RecipeModel {
   id: number; 
   title: string; 
   description: string; 
-  ingredients?: string[]; 
+  ingredients: string[]; 
   preparationTime: number; 
-  difficulty?: "easy" | "medium" | "hard"; 
+  difficulty: "easy" | "medium" | "hard"; 
 }
 
 

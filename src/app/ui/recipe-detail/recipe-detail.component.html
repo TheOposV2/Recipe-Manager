@@ -2,8 +2,12 @@
 <mat-card>
   <mat-card-title>{{ recipe.title }}</mat-card-title>
   <mat-card-content>
-    <p><strong>Składniki:</strong> {{ recipe.ingredients?.join(', ') }}</p>
-    <p><strong>Opis:</strong> {{ recipe.description }}</p>
+<mat-card-content>
+  <p><strong>Składniki:</strong> {{ recipe.ingredients.join(', ') }}</p>
+  <p><strong>Opis:</strong> {{ recipe.description }}</p>
+  <p><strong>Czas przygotowania:</strong> {{ recipe.preparationTime }}</p>
+  <p><strong>Trudność wykonania:</strong> {{ recipe.difficulty }}</p> </mat-card-content
+>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button color="accent" [routerLink]="['/recipe/edit', recipe.id]">Edytuj</button>

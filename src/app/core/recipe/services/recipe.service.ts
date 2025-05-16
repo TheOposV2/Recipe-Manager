@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RecipeModel } from '../recipe.model';
-import { map, Observable } from 'rxjs';
+import { from, map, Observable, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 // Service for performing HTTP operations on RecipeModel data
 @Injectable({
@@ -43,4 +43,16 @@ constructor(private httpClient: HttpClient) { }
     // Sending http get reqest and getting popular ingridens
     return this.httpClient.get<{ popularIngredients: string[] }>(`${this.baseUrl}/ingredients`).pipe(map((result) => result.popularIngredients));
   }
+
+  getLastRecipeId(): Observable<number> {
+    return this.getRecipes().pipe(
+      map((recipes: RecipeModel[]) => {
+        if (recipes.length === 0) {
+          throw new Error('No recipes found');
+        }
+        return recipes[recipes.length - 1].id;
+      })
+    );
+  }
+
 }

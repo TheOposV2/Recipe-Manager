@@ -8,12 +8,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import { Route, Router, RouterModule, RouterOutlet } from '@angular/router';
-import { tap } from 'rxjs';
+import { concatMap, from, switchMap, tap } from 'rxjs';
+import { HighlightOnHoverDirective } from '../../core/recipe/directives/highlight-on-hover.directive';
 @Component({
   selector: 'app-recipe-list',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule,
-     MatSelectModule, MatCardModule, CommonModule, RouterModule],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, 
+     MatSelectModule, MatCardModule, CommonModule, RouterModule, HighlightOnHoverDirective],
   templateUrl: './recipe-list.component.html',
   styleUrl: './recipe-list.component.scss'
 })
@@ -66,4 +67,5 @@ onDeleteRecipe(id: number): void {
   // It would execute immediately, before the recipe is actually deleted from the backend,
   // causing the list to refresh with the deleted item still present.
 }
+
 }
