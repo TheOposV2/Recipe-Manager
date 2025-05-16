@@ -14,11 +14,12 @@ import {MatSelectModule} from '@angular/material/select';
 })
 
 export class RecipeListElementComponent {
+    //Input is a function that estabishes connection parent to child 
   @Input() recipe !: RecipeModel;
   @Input() selectedTitle?: string;
   @Output() recipeSelected = new EventEmitter<RecipeModel>();
   @Output() recipeRemoved = new EventEmitter<number>();
-
+  // Passing element to delete
   onDeleteRecipe(id: number): void {
     this.recipeRemoved.emit(id);
 }

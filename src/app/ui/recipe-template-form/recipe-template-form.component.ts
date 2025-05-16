@@ -6,6 +6,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+// not used in this state of project was builded for test purposes coment will be added leater
+
 @Component({
   selector: 'app-recipe-template-form',
   standalone: true,
@@ -16,21 +18,21 @@ import {MatSelectModule} from '@angular/material/select';
 })
 export class RecipeTemplateFormComponent implements OnInit {
   showForm: boolean = false;
-
+  // to add coments
   @Input() isEditMode = false;
   @Input() currentRecipe: RecipeModel | null = null;
 
   constructor(private recipeService: RecipeService) {}
-
+  // to add coments
   ngOnInit(): void {
     if (this.currentRecipe) {
     }
   }
-
+  // to add coments
   toggleForm(): void {
     this.showForm = !this.showForm;
   }
-
+  // to add coments
   onSubmit(form: NgForm): void {
     if (form.valid) {
       const newRecipe: RecipeModel = {
@@ -47,7 +49,7 @@ export class RecipeTemplateFormComponent implements OnInit {
       } else {
         this.recipeService.addRecipe(newRecipe);
       }
-
+  // to add coments
       form.reset();
       this.showForm = false;
     }

@@ -24,9 +24,10 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
   styleUrl: './recipe-reactive-form.component.scss'
 })
 export class RecipeReactiveFormComponent implements OnInit {
+    // to add coments
   @Input() isEditMode = false;
   @Input() currentRecipe: RecipeModel | null = null;
-
+  // to add coments
   showForm = false;
   recipeFormGroup!: FormGroup;
   popularIngredients: string[] = [
@@ -36,14 +37,14 @@ export class RecipeReactiveFormComponent implements OnInit {
   'Bread', 'Rice', 'Pasta', 'Beans', 'Lettuce', 'Spinach', 'Broccoli', 'Mushrooms',
   'Fish', 'Shrimp', 'Soy sauce', 'Vinegar', 'Honey', 'Peppers', 'Zucchini', 'Cucumber',
   'Corn', 'Chili powder'];
-
+  // to add coments
   constructor(
     private fb: FormBuilder, 
     private recipeService: RecipeService, 
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
+  // to add coments
   ngOnInit(): void {
   this.recipeFormGroup = this.fb.group({
   title: ["", [Validators.required, Validators.minLength(3)]],
@@ -62,20 +63,20 @@ export class RecipeReactiveFormComponent implements OnInit {
     }
   }
 }
-
+  // This funtion was used to  display or hide form
   toggleForm(): void {
     this.showForm = !this.showForm;
   }
-
+  // Dunction that operates on submit event
 onSubmit(): void {
-    if (this.recipeFormGroup.valid) {
-      const recipe: RecipeModel = this.recipeFormGroup.value;
-      if (this.isEditMode) {
-        this.recipeService.editRecipe(recipe);
+    if (this.recipeFormGroup.valid) { // If the form is valid, prepare the RecipeModel from form data
+      const recipe: RecipeModel = this.recipeFormGroup.value; // Determine if we're editing an existing recipe or creating a new one
+      if (this.isEditMode) { // After saving, navigate back to the recipe list
+        this.recipeService.editRecipe(recipe); 
       } else {
         this.recipeService.addRecipe(recipe);
       }
-      this.router.navigate(["/recipes"]);
+      this.router.navigate(["/recipes"]); // We come back to veiw of all recepes
     }
   }
 }

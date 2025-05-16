@@ -18,9 +18,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 export class AppComponent {
   title = 'recipe-manager';
 isLoading: boolean = false;
+  // Logic of spinner 
 
   constructor(private router: Router) {
     this.router.events.subscribe((e) => {
+      // Activation of spinner at start of page
       if (e instanceof NavigationStart) {
         this.isLoading = true; 
       }
